@@ -9,6 +9,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
 
+      // BOTTOM NAVIGATION
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0,
         type: BottomNavigationBarType.fixed,
@@ -48,6 +49,7 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
 
+      // BODY
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -69,8 +71,8 @@ class HomeScreen extends StatelessWidget {
                     width: 24,
                   ),
 
-                  Column(
-                    children: const [
+                  const Column(
+                    children: [
 
                       Text(
                         'MAKE HOME',
@@ -149,6 +151,7 @@ class HomeScreen extends StatelessWidget {
 
                   children: [
 
+                    // PRODUCT 1
                     productItem(
                       context,
                       'assets/images/lamp.png',
@@ -156,6 +159,7 @@ class HomeScreen extends StatelessWidget {
                       '\$ 12.00',
                     ),
 
+                    // PRODUCT 2
                     productItem(
                       context,
                       'assets/images/chair_product.jpg',
@@ -163,18 +167,20 @@ class HomeScreen extends StatelessWidget {
                       '\$ 25.00',
                     ),
 
+                    // PRODUCT 3
                     productItem(
                       context,
                       'assets/images/table_product.png',
                       'Coffee Chair',
-                      '\$ 12.00',
+                      '\$ 20.00',
                     ),
 
+                    // PRODUCT 4
                     productItem(
                       context,
                       'assets/images/desk.png',
                       'Simple Desk',
-                      '\$ 12.00',
+                      '\$ 50.00',
                     ),
                   ],
                 ),
@@ -186,8 +192,8 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // CATEGORY
-  Widget categoryItem(
+  // CATEGORY ITEM
+  static Widget categoryItem(
     String image,
     String title,
     bool active,
@@ -210,6 +216,7 @@ class HomeScreen extends StatelessWidget {
           child: Image.asset(
             image,
             width: 24,
+
             color: active
                 ? Colors.white
                 : Colors.grey,
@@ -220,6 +227,7 @@ class HomeScreen extends StatelessWidget {
 
         Text(
           title,
+
           style: TextStyle(
             color: active
                 ? Colors.black
@@ -230,8 +238,8 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // PRODUCT
-  Widget productItem(
+  // PRODUCT ITEM
+  static Widget productItem(
     BuildContext context,
     String image,
     String title,
@@ -239,12 +247,17 @@ class HomeScreen extends StatelessWidget {
   ) {
     return GestureDetector(
 
+      // PINDAH KE PRODUCT DETAIL
       onTap: () {
         Navigator.push(
           context,
+
           MaterialPageRoute(
-            builder: (context) =>
-                const ProductDetailPage(),
+            builder: (context) => ProductDetailPage(
+              image: image,
+              title: title,
+              price: price,
+            ),
           ),
         );
       },
@@ -259,6 +272,7 @@ class HomeScreen extends StatelessWidget {
             child: Stack(
               children: [
 
+                // PRODUCT IMAGE
                 Container(
                   decoration: BoxDecoration(
                     borderRadius:
@@ -271,6 +285,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
 
+                // BAG ICON
                 Positioned(
                   bottom: 10,
                   right: 10,
@@ -296,8 +311,10 @@ class HomeScreen extends StatelessWidget {
 
           const SizedBox(height: 10),
 
+          // PRODUCT TITLE
           Text(
             title,
+
             style: const TextStyle(
               color: Colors.grey,
               fontSize: 16,
@@ -306,8 +323,10 @@ class HomeScreen extends StatelessWidget {
 
           const SizedBox(height: 5),
 
+          // PRODUCT PRICE
           Text(
             price,
+
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 18,

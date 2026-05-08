@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
 
 class ProductDetailPage extends StatelessWidget {
-  const ProductDetailPage({super.key});
+
+  final String image;
+  final String title;
+  final String price;
+
+  const ProductDetailPage({
+    super.key,
+    required this.image,
+    required this.title,
+    required this.price,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +36,7 @@ class ProductDetailPage extends StatelessWidget {
                     ),
 
                     child: Image.asset(
-                      'assets/images/chair_product.jpg',
+                      image,
 
                       height: 450,
                       width: MediaQuery.of(context).size.width * 0.85,
@@ -123,10 +133,11 @@ class ProductDetailPage extends StatelessWidget {
 
                 children: [
 
-                  const Text(
-                    'Minimal Stand',
+                  // TITLE
+                  Text(
+                    title,
 
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
                     ),
@@ -141,10 +152,10 @@ class ProductDetailPage extends StatelessWidget {
 
                     children: [
 
-                      const Text(
-                        '\$ 50',
+                      Text(
+                        price,
 
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
                         ),
