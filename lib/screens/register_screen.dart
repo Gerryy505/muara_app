@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
+
+  @override
+  State<RegisterScreen> createState() =>
+      _RegisterScreenState();
+}
+
+class _RegisterScreenState
+    extends State<RegisterScreen> {
+
+  // PASSWORD HIDE/SHOW
+  bool isPasswordHidden = true;
+  bool isConfirmPasswordHidden = true;
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +134,7 @@ class RegisterScreen extends StatelessWidget {
 
                     // PASSWORD
                     TextField(
-                      obscureText: true,
+                      obscureText: isPasswordHidden,
 
                       decoration: InputDecoration(
                         labelText: "Password",
@@ -132,8 +144,23 @@ class RegisterScreen extends StatelessWidget {
                               BorderRadius.circular(8),
                         ),
 
-                        suffixIcon: const Icon(
-                          Icons.remove_red_eye_outlined,
+                        suffixIcon: IconButton(
+
+                          icon: Icon(
+                            isPasswordHidden
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                          ),
+
+                          onPressed: () {
+
+                            setState(() {
+
+                              isPasswordHidden =
+                                  !isPasswordHidden;
+
+                            });
+                          },
                         ),
                       ),
                     ),
@@ -142,7 +169,8 @@ class RegisterScreen extends StatelessWidget {
 
                     // CONFIRM PASSWORD
                     TextField(
-                      obscureText: true,
+                      obscureText:
+                          isConfirmPasswordHidden,
 
                       decoration: InputDecoration(
                         labelText: "Confirm password",
@@ -152,8 +180,23 @@ class RegisterScreen extends StatelessWidget {
                               BorderRadius.circular(8),
                         ),
 
-                        suffixIcon: const Icon(
-                          Icons.remove_red_eye_outlined,
+                        suffixIcon: IconButton(
+
+                          icon: Icon(
+                            isConfirmPasswordHidden
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                          ),
+
+                          onPressed: () {
+
+                            setState(() {
+
+                              isConfirmPasswordHidden =
+                                  !isConfirmPasswordHidden;
+
+                            });
+                          },
                         ),
                       ),
                     ),
